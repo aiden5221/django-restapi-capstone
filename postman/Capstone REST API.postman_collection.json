@@ -1,0 +1,182 @@
+{
+	"info": {
+		"_postman_id": "5486b3f7-1f95-4686-b989-46a50194ca2e",
+		"name": "Capstone REST API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20542619"
+	},
+	"item": [
+		{
+			"name": "Job Application Endpoints",
+			"item": [
+				{
+					"name": "POST Job App",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n            \"jobName\": \"Test job application 2\",\r\n            \"jobDescription\": \"default job description 2\",\r\n            \"desiredSkills\": {\r\n                \"testSkill1\": 5,\r\n                \"testSkill2\": 8\r\n            },\r\n            \"minGPA\": \"4.20\",\r\n            \"location\": \"Oshawa, ON\",\r\n            \"pastExperiences\": {\r\n                \"pastExperience1\": 5,\r\n                \"pastExperience2\": 7\r\n            },\r\n            \"aptitudeResultsMin\": \"6.90\"\r\n        }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/jobapplications/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"jobapplications",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Job Apps",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/jobapplications",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"jobapplications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Job App",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Job App",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 2,\r\n    \"jobName\": \"Test job application 2\",\r\n    \"jobDescription\": \"default job description 2\",\r\n    \"desiredSkills\": {\r\n        \"testSkill1\": 5,\r\n        \"testSkill2\": 8\r\n    },\r\n    \"minGPA\": \"4.20\",\r\n    \"location\": \"Oshawa, ON\",\r\n    \"pastExperiences\": {\r\n        \"pastExperience1\": 69,\r\n        \"pastExperience2\": 7\r\n    },\r\n    \"aptitudeResultsMin\": \"6.90\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/jobapplications/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"jobapplications",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Job App",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/jobapplications/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"jobapplications",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Job App Shortlist",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Potential Employee Endpoints",
+			"item": [
+				{
+					"name": "GET Potential Employees",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/potentialemployees/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"potentialemployees",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Potential Employee",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"jobApplication\": 4,\r\n    \"name\": \"Test job application 2\",\r\n    \"skills\": [\"skill1\", \"skill2\", \"skill3\"],\r\n    \"GPA\": \"4.20\",\r\n    \"location\": \"Oshawa, ON\",\r\n    \"pastExperiences\": [\r\n        \"pastExperience1\", \r\n        \"pastExperience2\", \r\n        \"pastExperience3\"\r\n        ],\r\n    \"aptitudeResults\": \"6.90\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/potentialemployees/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"potentialemployees",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
