@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-w3=+9(co1gan%a0nj*hv5u7mz$59aok&(^ojwybrxs_=-qnr8j
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost','127.0.0.1:5432', '[::1]', '0.0.0.0', '0.0.0.0:8000', '127.0.0.1', '0.0.0.0:5432']
 
 
 # Application definition
@@ -77,12 +77,12 @@ WSGI_APPLICATION = 'capstoneapi.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'postgres',
         'USER': 'postgres',
-        'PASSWORD': '123',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'PASSWORD': 'password',
+        'HOST': 'db',
+        'PORT': 5432,
     }
     # 'default': {
     #     'ENGINE': 'django.db.backends.sqlite3',
