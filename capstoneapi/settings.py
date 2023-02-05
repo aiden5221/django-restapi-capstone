@@ -25,7 +25,9 @@ SECRET_KEY = 'django-insecure-w3=+9(co1gan%a0nj*hv5u7mz$59aok&(^ojwybrxs_=-qnr8j
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+     'django-capstone.on.dockerize.io'
+]
 
 
 # Application definition
