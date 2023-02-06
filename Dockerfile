@@ -9,10 +9,10 @@ ENV PYTHONUNBUFFERED 1
 # create root directory for our project in the container
 RUN mkdir /django-resapi
 
-# Set the working directory to /music_service
+# Setting the work directory
 WORKDIR /django-resapi
 
-# Copy the current directory contents into the container at /music_service
+# Copy the current directory contents into the container at /django-resapi
 ADD . /django-resapi
 
 # Install any needed packages specified in requirements.txt

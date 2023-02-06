@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-w3=+9(co1gan%a0nj*hv5u7mz$59aok&(^ojwybrxs_=-qnr8j
 DEBUG = True
 
 ALLOWED_HOSTS = [
-     'django-capstone.on.dockerize.io'
+     'django-capstone.on.dockerize.io', 'localhost'
 ]
 
 
@@ -82,8 +82,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',
         'USER': 'postgres',
-        'PASSWORD': '123',
-        'HOST': 'localhost',
+        'PASSWORD': 'postgres',
+        'HOST': 'db',
         'PORT': '5432',
     }
     # 'default': {
