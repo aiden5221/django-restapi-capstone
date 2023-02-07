@@ -24,8 +24,10 @@ SECRET_KEY = 'django-insecure-w3=+9(co1gan%a0nj*hv5u7mz$59aok&(^ojwybrxs_=-qnr8j
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'django-capstone.on.dockerize.io', 
+    'localhost'
+]
 
 
 # Application definition
@@ -33,15 +35,18 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'rest_framework',
     'capstoneapi',
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'django.contrib.staticfiles'
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -52,6 +57,14 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'capstoneapi.urls'
+
+CORS_ALLOWED_WHITELIST = (
+    'http://127.0.0.1:5173',
+    'http://localhost:8000',
+)
+
+# MUST DISABLE WHEN DEPLOYING TO PRODUCTION
+CORS_ALLOW_ALL_ORIGINS = True
 
 TEMPLATES = [
     {
@@ -80,8 +93,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',
         'USER': 'postgres',
-        'PASSWORD': '123',
-        'HOST': 'localhost',
+        'PASSWORD': 'postgres',
+        'HOST': 'db',
         'PORT': '5432',
     }
     # 'default': {
