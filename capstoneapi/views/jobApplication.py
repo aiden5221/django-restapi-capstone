@@ -21,7 +21,7 @@ def jobApplication_list(request):
         serializer = JobApplicationSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return Response(serializer.data, status=status.HTTP_201_CREATED )
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def jobApplication_detail(request, id):
@@ -63,3 +63,14 @@ def jobApplication_shortlist(request, id, length):
 
     return Response(shortlist, status=status.HTTP_200_OK)
 
+@api_view(['GET'])
+def jobApplication_listByName(request, name):
+
+    try:
+        jobApps = JobApplication.objects.filter(jobName__icontains=name)
+    except JobApplication.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    serializer = JobApplicationSerializer(jobApps, many=True)
+
+    return Response(serializer.data, status=status.HTTP_200_OK)
