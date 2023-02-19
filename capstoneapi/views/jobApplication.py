@@ -57,6 +57,7 @@ def jobApplication_shortlist(request, id, length):
     except JobApplication.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
+
     serializer = JobApplicationSerializer(jobApp)
 
     shortlist = createShortlist(serializer.data, length)
