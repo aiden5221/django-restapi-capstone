@@ -6,7 +6,7 @@ class JobApplicationSerializer(serializers.ModelSerializer):
     # metadata that describes the model and what fields will be returned
     class Meta:
         model = JobApplication
-        fields = ['id', 'jobName', 'jobDescription', 'desiredSkills', 'minGPA', 'location', 'pastExperiences', 'aptitudeResultsMin', 'applicants']
+        fields = ['id', 'jobName', 'jobDescription', 'desiredSkills', 'minGPA', 'location', 'pastExperiences', 'aptitudeResultsMin', 'applicants', 'date']
 
 class PotentialEmployeeSerializer(serializers.ModelSerializer):
     
