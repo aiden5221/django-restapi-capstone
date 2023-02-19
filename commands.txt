@@ -1,0 +1,9 @@
+Activate venv
+. .venv/scripts/Activate
+
+Start server
+python manage.py runserver
+
+Admin Credentials
+admin
+123
