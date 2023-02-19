@@ -15,5 +15,15 @@ WORKDIR /django-resapi
 # Copy the current directory contents into the container at /django-resapi
 ADD . /django-resapi
 
+
+
 # Install any needed packages specified in requirements.txt
 RUN pip install -r requirements.txt
+
+# Install nltk dependencies
+RUN [ "python", "-c", "import nltk; nltk.download('stopwords')"]
+
+# Install spacy dependencies
+RUN ["python", "-m" ,"spacy", "download", "en_core_web_sm"]
+
+

@@ -1,9 +1,11 @@
 from pyresparser import ResumeParser
 import spacy
 from collections.abc import Iterable
+
 spacy.load('en_core_web_sm')
 
 def getData(f):
+    print(type(f))
     data = ResumeParser(f)
     data = data.get_extracted_data()
     name = data['name']
@@ -18,7 +20,3 @@ def getData(f):
         # Handle other cases as necessary
         pass
     return [name,email,number,skills]
-
-
-print("Resumes Successfully Parsed")
-

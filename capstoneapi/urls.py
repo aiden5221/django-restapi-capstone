@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from capstoneapi.views import jobApplication, potentialEmployee
+from capstoneapi.views import jobApplication, potentialEmployee, resumeParsing
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,4 +28,7 @@ urlpatterns = [
     # Potential employee endpoints
     path('potentialemployees/', potentialEmployee.potentialEmployee_list),
     path('potentialemployees/<int:id>', potentialEmployee.potentialEmployee_detail),
+
+    path('parseResume/', resumeParsing.getResume),
+
 ]
