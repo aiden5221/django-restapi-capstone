@@ -8,3 +8,4 @@ tzdata==2022.6
 django-cors-headers==3.13.0
 spacy==2.3.5
 pyresparser==1.0.6
+nltk==3.7
