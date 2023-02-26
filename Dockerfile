@@ -26,4 +26,6 @@ RUN [ "python", "-c", "import nltk; nltk.download('stopwords')"]
 # Install spacy dependencies
 RUN ["python", "-m" ,"spacy", "download", "en_core_web_sm"]
 
+RUN ["pip", "install" ,"PyPDF2<3.0"]
+
 
