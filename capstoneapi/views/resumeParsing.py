@@ -5,7 +5,8 @@ from ..services import resumeParse
 def getResume(request):
     if request.method == 'POST':
         resume_file = request.FILES.get('resume_parse')
-        data = resumeParse.getData(resume_file)
-        return JsonResponse(data,status=201,safe=False)
+        if resume_file:
+            data = resumeParse.getData(resume_file)
+            return JsonResponse(data,status=201,safe=False)
     else:
         return JsonResponse({'error': 'Invalid request method'},status=400)
