@@ -7,11 +7,11 @@ class JobApplication(models.Model):
     desiredSkills = models.JSONField()
     minGPA = models.DecimalField(decimal_places=2, max_digits=3, null=True)
     location = models.CharField(max_length=150)
-    pastExperiences = models.JSONField()
+    pastExperiences = models.JSONField(null=True)
     aptitudeResultsMin = models.DecimalField(decimal_places=2, max_digits=3)
     date = models.DateField(auto_now=True)
     company = models.CharField(max_length=300, default='placeholder_company')
-    createdBy = models.CharField(max_length=30, default='placeholder_createdBy')
+    createdBy = models.CharField(max_length=30, default='placeholder_createdBy', null=True)
 
     @property
     def applicants(self):
