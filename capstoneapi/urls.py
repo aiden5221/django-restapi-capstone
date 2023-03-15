@@ -21,9 +21,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # Job application endpoints
     path('jobapplications/', jobApplication.jobApplication_list),
-    path('jobapplications/<int:id>', jobApplication.jobApplication_detail),
+    path('jobapplication/<int:id>/', jobApplication.jobApplication_detail),
     path('jobapplication/<int:id>/shortlist/<int:length>', jobApplication.jobApplication_shortlist),
-    path('jobapplication/<str:name>/', jobApplication.jobApplication_listByName),
+    path('jobapplicationSearch/<str:name>/', jobApplication.jobApplication_listByName),
 
     # Potential employee endpoints
     path('potentialemployees/', potentialEmployee.potentialEmployee_list),

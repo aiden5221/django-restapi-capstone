@@ -1,6 +1,7 @@
 from rest_framework.decorators import api_view
 from django.http import JsonResponse
 from ..services import resumeParse
+
 @api_view(['POST'])
 def getResume(request):
     if request.method == 'POST':

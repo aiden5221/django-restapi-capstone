@@ -27,7 +27,7 @@ def jobApplication_list(request):
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def jobApplication_detail(request, id):
-
+    
     # Get the specific job application to work with and return 404 if not found
     try:
         jobApp = JobApplication.objects.get(pk=id)
@@ -68,7 +68,6 @@ def jobApplication_shortlist(request, id, length):
 
 @api_view(['GET'])
 def jobApplication_listByName(request, name):
-
     try:
         jobApps = JobApplication.objects.filter(jobName__icontains=name)
     except JobApplication.DoesNotExist:
