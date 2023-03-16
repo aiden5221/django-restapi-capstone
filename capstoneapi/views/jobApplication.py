@@ -76,3 +76,15 @@ def jobApplication_listByName(request, name):
     serializer = JobApplicationSerializer(jobApps, many=True)
 
     return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+@api_view(['GET'])
+def jobApplication_listByUser(request, uid):
+    try:
+        jobApps = JobApplication.objects.filter(createdBy=uid)
+    except JobApplication.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND) 
+
+    serializer = JobApplicationSerializer(jobApps, many=True)
+
+    return Response(serializer.data, status=status.HTTP_200_OK)
