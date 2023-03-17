@@ -24,10 +24,13 @@ urlpatterns = [
     path('jobapplication/<int:id>/', jobApplication.jobApplication_detail),
     path('jobapplication/<int:id>/shortlist/<int:length>', jobApplication.jobApplication_shortlist),
     path('jobapplicationSearch/<str:name>/', jobApplication.jobApplication_listByName),
+    path('userJobApplications/<str:uid>/', jobApplication.jobApplication_listByUser),
 
     # Potential employee endpoints
     path('potentialemployees/', potentialEmployee.potentialEmployee_list),
     path('potentialemployees/<int:id>', potentialEmployee.potentialEmployee_detail),
+
+    
 
     path('parseResume/', resumeParsing.getResume),
 
