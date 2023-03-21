@@ -1,6 +1,7 @@
 from django.contrib.postgres.fields import ArrayField
 from django.db import models
 from datetime import date
+
 class JobApplication(models.Model):
     jobName = models.CharField(max_length=300)
     jobDescription = models.CharField(max_length=1000)
@@ -12,7 +13,8 @@ class JobApplication(models.Model):
     date = models.DateField(auto_now=True)
     company = models.CharField(max_length=300, default='placeholder_company')
     createdBy = models.CharField(max_length=30, default='placeholder_createdBy')
-
+    aptitudeTest = models.JSONField(default='placeholder_aptitudeTest')
+    
     @property
     def applicants(self):
         return PotentialEmployee.objects.filter(jobApplication=self).values()
@@ -34,3 +36,4 @@ class PotentialEmployee(models.Model):
 
     def __str__ (self):
         return self.name + ' : ' + self.location
+    
