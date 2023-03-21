@@ -19,10 +19,6 @@ def createShortlist(jobApp, length):
         correspondingSkills = []
         print(potentialEmployee)
         print(potentialEmployee['skills'])
-        # Check if minGPA or minimumAptitudeResults are greater than potential employee results meaning they are not a fit
-        if potentialEmployee['GPA'] and minGPA > float(potentialEmployee['GPA']) or aptitudeResultsMin > float(potentialEmployee['aptitudeResults']):
-            shortlist[potentialEmployee['id']] = [0, potentialEmployee['name'] ]
-            continue
        
         # Check desired skills with potentialemployee skills
         for skill, value in desiredSkills.items():
