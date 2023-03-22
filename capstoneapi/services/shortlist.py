@@ -1,25 +1,19 @@
 from datetime import datetime
 
 def createShortlist(jobApp, length):
-    SCORE_DESIRED_PAST_EXPERIENCE = 2
+
 
     # Job App fields to determine score
     desiredSkills = dict(jobApp['desiredSkills'])
-    minGPA = float(jobApp['minGPA'])
-    aptitudeResultsMin = float(jobApp['aptitudeResultsMin'])
-
     potentialEmployees = jobApp['applicants']
     totalScore = sum(int(val) for _, val in desiredSkills.items())
+    totalScorePersonality = len(jobApp['aptitudeTest'])
     shortlist = {}
 
     # Iterate through potential employees
     for potentialEmployee in potentialEmployees:
         score = 0
         correspondingSkills = []
-        # Check if minGPA or minimumAptitudeResults are greater than potential employee results meaning they are not a fit
-        if potentialEmployee['GPA'] and minGPA > float(potentialEmployee['GPA']) or aptitudeResultsMin > float(potentialEmployee['aptitudeResults']):
-            shortlist[potentialEmployee['id']] = [0, potentialEmployee['name'] ]
-            continue
        
         # Check desired skills with potentialemployee skills
         for skill, value in desiredSkills.items():
@@ -29,12 +23,7 @@ def createShortlist(jobApp, length):
                 score += int(value)
                 correspondingSkills.append(skill)
 
-
-        # Check desired previous employements
-        # for prevEmployment in desiredPastExperience:
-        #     if prevEmployment in potentialEmployee['pastExperiences']:
-        #         score += SCORE_DESIRED_PAST_EXPERIENCE
-        shortlist[potentialEmployee['id']] = [score, potentialEmployee['name'], correspondingSkills, potentialEmployee['location'], potentialEmployee['email']]
+        shortlist[potentialEmployee['id']] = [score, potentialEmployee['name'], correspondingSkills, potentialEmployee['location'], potentialEmployee['email'], potentialEmployee['aptitudeResults']]
 
     # Sort and shorten shortlist to the length passed
     shortlist = dict(sorted(shortlist.items(), key=lambda item: item[1][0], reverse=True)[:length])
@@ -46,8 +35,9 @@ def createShortlist(jobApp, length):
     }
 
     # Format response
-    for id, (score, name, correspondingSkills, location, email) in shortlist.items():
+    for id, (score, name, correspondingSkills, location, email, aptitudeResults) in shortlist.items():
         percentageScore = round(score/totalScore * 100)
+        percentageAptitude = round(aptitudeResults/totalScorePersonality * 100)
         response['shortlist'].append({
             'applicantId': id,
             'name': name,
@@ -55,7 +45,9 @@ def createShortlist(jobApp, length):
             'correspondingSkills': correspondingSkills,
             'location': location,
             'email': email,
+            'aptitudeResults': percentageAptitude
         })
+        
     return response
 
 

@@ -23,7 +23,7 @@ urlpatterns = [
     path('jobapplications/', jobApplication.jobApplication_list),
     path('jobapplication/<int:id>/', jobApplication.jobApplication_detail),
     path('jobapplication/<int:id>/shortlist/<int:length>', jobApplication.jobApplication_shortlist),
-    path('jobapplicationSearch/<str:name>/', jobApplication.jobApplication_listByName),
+    path('jobapplicationSearch/', jobApplication.jobApplication_listByName),
     path('userJobApplications/<str:uid>/', jobApplication.jobApplication_listByUser),
 
     # Potential employee endpoints

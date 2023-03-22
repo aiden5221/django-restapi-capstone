@@ -5,6 +5,7 @@ from ..services.shortlist import createShortlist
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
+import json
 
 @api_view(['GET', 'POST'])
 def jobApplication_list(request):
@@ -67,16 +68,19 @@ def jobApplication_shortlist(request, id, length):
     return Response(shortlist, status=status.HTTP_200_OK)
 
 @api_view(['GET'])
-def jobApplication_listByName(request, name):
-    try:
-        jobApps = JobApplication.objects.filter(jobName__icontains=name)
-    except JobApplication.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
+def jobApplication_listByName(request):
+    print(request.query_params['name'])
+    if request.query_params['name']:
+        name = request.query_params['name']
+        try:
+            jobApps = JobApplication.objects.filter(jobName__icontains=name)
+        except JobApplication.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        serializer = JobApplicationSerializer(jobApps, many=True)
 
-    serializer = JobApplicationSerializer(jobApps, many=True)
-
-    return Response(serializer.data, status=status.HTTP_200_OK)
-
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    else:
+        return Response(status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET'])
 def jobApplication_listByUser(request, uid):
