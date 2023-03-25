@@ -1,5 +1,6 @@
-from ..models import PotentialEmployee
+from ..models import PotentialEmployee, JobApplication
 from ..serializer import PotentialEmployeeSerializer
+from ..services.shortlist import createShortlistJob
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -47,3 +48,17 @@ def potentialEmployee_detail(request, id):
     elif request.method == 'DELETE':
         potentialEmployee.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    
+@api_view(['POST'])
+def potentialEmployee_shortlist(request, length):
+
+    try:
+        jobApplications = JobApplication.objects.all()
+        serializer = PotentialEmployeeSerializer(data=request.data)
+        if serializer.is_valid():
+            shortlist = createShortlistJob(serializer.data, jobApplications, length)
+            return Response(shortlist)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    except JobApplication.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)

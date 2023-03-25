@@ -23,13 +23,13 @@ class JobApplication(models.Model):
         return self.jobName + ' : ' + self.location
 
 class PotentialEmployee(models.Model):
-    jobApplication = models.ForeignKey(JobApplication, on_delete=models.CASCADE, default="")
+    jobApplication = models.ForeignKey(JobApplication, on_delete=models.CASCADE, default="", null=True)
     name = models.CharField(max_length=300)
     skills = ArrayField(models.CharField(max_length=50))
     GPA = models.DecimalField(decimal_places=2, max_digits=3, null=True)
     location = models.CharField(max_length=150)
     pastExperiences = ArrayField(models.CharField(max_length=100), null=True)
-    aptitudeResults = models.IntegerField()
+    aptitudeResults = models.IntegerField(null=True)
     email = models.EmailField(max_length=254, default='placeholder_email')
     phoneNumber = models.CharField(max_length=30, blank=True, default='placeholder_number')
     uID = models.CharField(max_length=30, default='placeholder_uID')
