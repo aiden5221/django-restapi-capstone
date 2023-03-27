@@ -27,7 +27,7 @@ def createShortlistEmployee(jobApp, length):
 
     # Sort and shorten shortlist to the length passed
     shortlist = dict(sorted(shortlist.items(), key=lambda item: item[1][0], reverse=True)[:length])
-    print(shortlist)
+
     response = {
         'shortlist': [],
         'length': len(shortlist),
@@ -70,12 +70,12 @@ def createShortlistJob(potentialEmployee, jobApps, length):
                 score += int(value)
                 correspondingSkills.append(skill)
         if(score > 0):  
-            shortlist.append({'score': score, 'jobId': jobApp.id, 'jobName': jobApp.jobName, 'skills': correspondingSkills})
-    print(shortlist)
+            shortlist.append({'jobName': jobApp.jobName, 'company': jobApp.company, 'location': jobApp.location, 'date': jobApp.date, 'score': score, 'jobId': jobApp.id })
 
     # Sort and shorten shortlist to the length passed
     shortlist = sorted(shortlist, key=lambda x: x['score'], reverse=True)[:length]
     response = {
         'shortlist': shortlist,
     }
+
     return response

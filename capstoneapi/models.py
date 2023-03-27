@@ -27,7 +27,7 @@ class PotentialEmployee(models.Model):
     name = models.CharField(max_length=300)
     skills = ArrayField(models.CharField(max_length=50))
     GPA = models.DecimalField(decimal_places=2, max_digits=3, null=True)
-    location = models.CharField(max_length=150)
+    location = models.CharField(max_length=150, null=True, blank=True)
     pastExperiences = ArrayField(models.CharField(max_length=100), null=True)
     aptitudeResults = models.IntegerField(null=True)
     email = models.EmailField(max_length=254, default='placeholder_email')
