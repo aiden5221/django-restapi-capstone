@@ -29,6 +29,7 @@ urlpatterns = [
     # Potential employee endpoints
     path('potentialemployees/', potentialEmployee.potentialEmployee_list),
     path('potentialemployees/<int:id>', potentialEmployee.potentialEmployee_detail),
+    path('potentialemployees/shortlist/<int:length>', potentialEmployee.potentialEmployee_shortlist),
 
     
 

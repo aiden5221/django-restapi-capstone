@@ -1,6 +1,6 @@
 from datetime import datetime
 
-def createShortlist(jobApp, length):
+def createShortlistEmployee(jobApp, length):
 
 
     # Job App fields to determine score
@@ -27,7 +27,7 @@ def createShortlist(jobApp, length):
 
     # Sort and shorten shortlist to the length passed
     shortlist = dict(sorted(shortlist.items(), key=lambda item: item[1][0], reverse=True)[:length])
-    print(shortlist)
+
     response = {
         'shortlist': [],
         'length': len(shortlist),
@@ -52,3 +52,30 @@ def createShortlist(jobApp, length):
 
 
         
+def createShortlistJob(potentialEmployee, jobApps, length):
+    employeeSkills = [skill.lower().replace(' ', '') for skill in potentialEmployee['skills']]
+    shortlist = []
+
+    # Goes through all job applications
+    for jobApp in jobApps:
+        score = 0
+        correspondingSkills = []
+
+        desiredSkills = jobApp.desiredSkills
+        
+        # Goes through all desired skills in job application
+        for skill, value in desiredSkills.items():
+            formattedSkill = skill.lower().replace(" ", "")
+            if formattedSkill in employeeSkills:
+                score += int(value)
+                correspondingSkills.append(skill)
+        if(score > 0):  
+            shortlist.append({'jobName': jobApp.jobName, 'company': jobApp.company, 'location': jobApp.location, 'date': jobApp.date, 'score': score, 'jobId': jobApp.id })
+
+    # Sort and shorten shortlist to the length passed
+    shortlist = sorted(shortlist, key=lambda x: x['score'], reverse=True)[:length]
+    response = {
+        'shortlist': shortlist,
+    }
+
+    return response

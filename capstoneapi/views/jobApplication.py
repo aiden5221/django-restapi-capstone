@@ -1,6 +1,6 @@
 from ..models import JobApplication
 from ..serializer import JobApplicationSerializer
-from ..services.shortlist import createShortlist
+from ..services.shortlist import createShortlistEmployee
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -63,7 +63,7 @@ def jobApplication_shortlist(request, id, length):
 
     serializer = JobApplicationSerializer(jobApp)
 
-    shortlist = createShortlist(serializer.data, length)
+    shortlist = createShortlistEmployee(serializer.data, length)
 
     return Response(shortlist, status=status.HTTP_200_OK)
 
