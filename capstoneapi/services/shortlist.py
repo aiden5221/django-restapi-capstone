@@ -41,11 +41,11 @@ def createShortlist(jobApp, length):
         response['shortlist'].append({
             'applicantId': id,
             'name': name,
-            'score': percentageScore,
-            'correspondingSkills': correspondingSkills,
             'location': location,
             'email': email,
-            'aptitudeResults': percentageAptitude
+            'score': percentageScore,
+            'aptitudeResults': percentageAptitude,
+            'correspondingSkills': correspondingSkills
         })
         
     return response
