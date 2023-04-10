@@ -52,7 +52,7 @@ def createShortlistEmployee(jobApp, length):
 
 
         
-def createShortlistJob(potentialEmployee, jobApps, length):
+def createShortlistJob(potentialEmployee, jobApps):
     employeeSkills = [skill.lower().replace(' ', '') for skill in potentialEmployee['skills']]
     shortlist = []
 
@@ -73,7 +73,7 @@ def createShortlistJob(potentialEmployee, jobApps, length):
             shortlist.append({'jobName': jobApp.jobName, 'company': jobApp.company, 'location': jobApp.location, 'date': jobApp.date, 'score': score, 'jobId': jobApp.id })
 
     # Sort and shorten shortlist to the length passed
-    shortlist = sorted(shortlist, key=lambda x: x['score'], reverse=True)[:length]
+    shortlist = sorted(shortlist, key=lambda x: x['score'], reverse=True)
     response = {
         'shortlist': shortlist,
     }

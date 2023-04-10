@@ -50,15 +50,16 @@ def potentialEmployee_detail(request, id):
         return Response(status=status.HTTP_204_NO_CONTENT)
     
 @api_view(['POST'])
-def potentialEmployee_shortlist(request, length):
+def potentialEmployee_shortlist(request):
 
     try:
         jobApplications = JobApplication.objects.all()
         serializer = PotentialEmployeeSerializer(data=request.data)
         if serializer.is_valid():
-            shortlist = createShortlistJob(serializer.data, jobApplications, length)
+            shortlist = createShortlistJob(serializer.data, jobApplications)
             return Response(shortlist)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     except JobApplication.DoesNotExist:
+        print('hi')
         return Response(status=status.HTTP_404_NOT_FOUND)
